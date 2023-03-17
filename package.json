@@ -5,6 +5,7 @@
   "repository": "git@github.com:arieelarg/script-cryptocurrency-historical-data.git",
   "author": "arieelarg <ariel.silva@pedidosya.com>",
   "license": "MIT",
+  "type": "commonjs",
   "dependencies": {
     "fs": "^0.0.1-security",
     "node-fetch": "^3.3.1"
