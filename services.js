@@ -31,53 +31,55 @@ async function getPrices(fetch, config) {
     }
 
     const prices = data?.map(([timestamp, open, high, low, close]) => {
-      const date = new Date(timestamp);
+      // const date = new Date(timestamp);
 
-      return {
-        date: new Date(date),
-        open,
-        maxPrice: high,
-        minPrice: low,
-        close,
-      };
+      return open;
+
+      // return {
+      //   date: new Date(date),
+      //   open,
+      //   maxPrice: high,
+      //   minPrice: low,
+      //   close,
+      // };
     });
 
     return prices;
   } catch (error) {
-    console.log("[getPrices]", error);
+    console.error("[getPrices]", error);
   }
 }
 
-async function getMarketCharts(fetch, config) {
-  const { symbol, days, interval } = config;
+// async function getMarketCharts(fetch, config) {
+//   const { symbol, days, interval } = config;
 
-  // Data up to number of days ago (eg. 1,14,30,max)
-  const MARKET_API = `https://api.coingecko.com/api/v3/coins/${symbol}/market_chart?vs_currency=usd&days=${days}&interval=${interval}`;
+//   // Data up to number of days ago (eg. 1,14,30,max)
+//   const MARKET_API = `https://api.coingecko.com/api/v3/coins/${symbol}/market_chart?vs_currency=usd&days=${days}&interval=${interval}`;
 
-  try {
-    const response = await fetch.default(MARKET_API);
-    const { market_caps, total_volumes } = await response.json();
+//   try {
+//     const response = await fetch.default(MARKET_API);
+//     const { market_caps, total_volumes } = await response.json();
 
-    const marketCaps = market_caps?.map(([timestamp, price]) => {
-      const date = new Date(timestamp);
-      return { date, price };
-    });
+//     const marketCaps = market_caps?.map(([timestamp, price]) => {
+//       const date = new Date(timestamp);
+//       return { date, price };
+//     });
 
-    const totalVolumes = total_volumes?.map(([timestamp, price]) => {
-      const date = new Date(timestamp);
-      return { date, price };
-    });
+//     const totalVolumes = total_volumes?.map(([timestamp, price]) => {
+//       const date = new Date(timestamp);
+//       return { date, price };
+//     });
 
-    return { marketCaps, totalVolumes };
-  } catch (error) {
-    console.log("[getMarketCharts]", error);
-  }
-}
+//     return { marketCaps, totalVolumes };
+//   } catch (error) {
+//     console.error("[getMarketCharts]", error);
+//   }
+// }
 
 async function getHistoricalData(
   fetch,
   symbol,
-  marketChartsConfig,
+  // marketChartsConfig,
   pricesConfig
 ) {
   //   const { marketCaps, totalVolumes } = await getMarketCharts(fetch, {
@@ -87,12 +89,14 @@ async function getHistoricalData(
 
   const prices = await getPrices(fetch, { symbol, ...pricesConfig });
 
-  return {
-    symbol,
-    prices,
-    // marketCaps,
-    // totalVolumes,
-  };
+  return prices;
+
+  // return {
+  //   symbol,
+  //   prices,
+  //   marketCaps,
+  //   totalVolumes,
+  // };
 }
 
 module.exports = {

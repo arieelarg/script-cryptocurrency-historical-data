@@ -19,7 +19,7 @@ async function run() {
     getHistoricalData(fetch, symbol, marketChartsConfig, pricesConfig)
   );
 
-  const result = await Promise.all(getAllTokensData);
+  const [result] = await Promise.all(getAllTokensData);
 
   await saveFile(result);
 
