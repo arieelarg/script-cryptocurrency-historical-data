@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:arieelarg/script-cryptocurrency-historical-data.git",
-  "author": "arieelarg <ariel.silva@pedidosya.com>",
+  "author": "arieelarg",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
