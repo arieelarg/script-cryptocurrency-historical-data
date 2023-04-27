@@ -19,6 +19,8 @@ const DAYS = {
 async function getPrices(fetch, config) {
   const { symbol, days } = config;
 
+  console.log({ days });
+
   // Days: Data up to number of days ago (1/7/14/30/90/180/365/max)
   const OHLC_API = `https://api.coingecko.com/api/v3/coins/${symbol}/ohlc?vs_currency=usd&days=${days}`;
 
@@ -31,7 +33,7 @@ async function getPrices(fetch, config) {
     }
 
     const prices = data?.map(([timestamp, open, high, low, close]) => {
-      // const date = new Date(timestamp);
+      const date = new Date(timestamp);
 
       return open;
 
@@ -76,10 +78,10 @@ async function getPrices(fetch, config) {
 //   }
 // }
 
-async function getHistoricalData(
+async function getHistoricalDataService(
   fetch,
   symbol,
-  // marketChartsConfig,
+  marketChartsConfig,
   pricesConfig
 ) {
   //   const { marketCaps, totalVolumes } = await getMarketCharts(fetch, {
@@ -105,5 +107,5 @@ module.exports = {
   UNI,
   INTERVAL,
   DAYS,
-  getHistoricalData,
+  getHistoricalDataService,
 };

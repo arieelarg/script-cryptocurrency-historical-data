@@ -1,9 +1,10 @@
-const { INTERVAL, DAYS, getHistoricalData, ETH } = require("./services");
+const { getFibonacci } = require("./fibonacci");
+const { INTERVAL, DAYS, getHistoricalDataService, BTC } = require("./services");
 const { saveFile } = require("./utils");
 
-const TOKENS = [ETH];
+const TOKENS = [BTC];
 
-async function run() {
+async function getHistoricalData() {
   const fetch = await import("node-fetch");
 
   const marketChartsConfig = {
@@ -16,14 +17,20 @@ async function run() {
   };
 
   const getAllTokensData = TOKENS.map((symbol) =>
-    getHistoricalData(fetch, symbol, marketChartsConfig, pricesConfig)
+    getHistoricalDataService(fetch, symbol, marketChartsConfig, pricesConfig)
   );
 
   const [result] = await Promise.all(getAllTokensData);
 
-  await saveFile(result);
-
   return result;
+}
+
+async function run() {
+  // const result = await getHistoricalData();
+
+  // await saveFile(result);
+
+  getFibonacci();
 }
 
 run();
