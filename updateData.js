@@ -1,4 +1,3 @@
-const { getFibonacci } = require("./fibonacci");
 const { INTERVAL, DAYS, getHistoricalDataService, BTC } = require("./services");
 const { saveFile } = require("./utils");
 
@@ -25,12 +24,10 @@ async function getHistoricalData() {
   return result;
 }
 
-async function run() {
-  // const result = await getHistoricalData();
+async function updateData() {
+  const result = await getHistoricalData();
 
-  // await saveFile(result);
-
-  getFibonacci();
+  await saveFile(result);
 }
 
-run();
+updateData();

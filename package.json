@@ -6,6 +6,10 @@
   "author": "arieelarg",
   "license": "MIT",
   "type": "commonjs",
+  "scripts": { 
+    "analysis": "node analysis",
+    "update": "node updateData"
+   },
   "dependencies": {
     "fs": "^0.0.1-security",
     "node-fetch": "^3.3.1"

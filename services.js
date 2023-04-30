@@ -19,8 +19,6 @@ const DAYS = {
 async function getPrices(fetch, config) {
   const { symbol, days } = config;
 
-  console.log({ days });
-
   // Days: Data up to number of days ago (1/7/14/30/90/180/365/max)
   const OHLC_API = `https://api.coingecko.com/api/v3/coins/${symbol}/ohlc?vs_currency=usd&days=${days}`;
 
